@@ -1,0 +1,40 @@
+<section class="py-16 bg-white border-t border-gray-100">
+    <div class="container mx-auto px-4">
+        
+        <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 uppercase tracking-tight">
+                Официальные партнеры
+            </h2>
+            <p class="text-gray-500 mt-2 text-sm md:text-base">
+                Мы сотрудничаем только с проверенными производителями крепежа
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-8 items-center justify-center">
+            
+            {# 
+               Список брендов для генерации. 
+               ВАЖНО: Замени названия в 'alt' на реальные (Hilti, Fischer и т.д.) для SEO!
+            #}
+            {% set brands = [
+                "STALMAX", "TERMOCLIP", "fischer", "Sormat", 
+                "Ejot", "HILTI", "BIT", "RAWLPLUG",
+                "МКТ", "GRAF", "BRALO", "Mungo"
+            ] %}
+
+            {# Генерируем 12 карточек #}
+            {% for i in range(0, 12) %}
+            <div class="group flex items-center justify-center h-24 p-4 bg-gray-50 rounded-xl border border-transparent hover:border-gray-200 hover:shadow-lg transition-all duration-300">
+                <img 
+                    src="/static/images/brands/brand-{{ i + 1 }}.avif" 
+                    alt="Купить крепеж {{ brands[i] if i < brands|length else 'Партнер' }} в Иваново" 
+                    width="120" 
+                    height="60"
+                    loading="lazy"
+                    class="max-w-full max-h-full object-contain filter opacity-80 group-hover: group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110"
+                >
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

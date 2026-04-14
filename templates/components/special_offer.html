@@ -1,0 +1,104 @@
+<section class="py-20 md:py-24 bg-slate-900 relative overflow-hidden">
+    
+    <!-- Декор фона -->
+    <div class="absolute right-0 top-0 h-[120%] w-1/2 bg-white/5 -skew-x-12 transform translate-x-1/4 -translate-y-10 pointer-events-none"></div>
+    <div class="absolute left-0 bottom-0 h-full w-full bg-gradient-to-t from-slate-900 via-transparent to-transparent pointer-events-none"></div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 md:p-12 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20 shadow-2xl">
+        
+        <!-- Левая часть: Текст -->
+        <div class="flex-1 text-center lg:text-left space-y-8">
+          <h2 class="text-3xl md:text-5xl font-bold text-white uppercase leading-tight tracking-tight">
+            Особые условия <br>
+            <span class="text-brand-accent">для снабженцев</span>
+          </h2>
+          
+          <div class="space-y-4 text-gray-300 text-lg">
+            <div class="flex items-center justify-center lg:justify-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0">
+                  <span class="text-xl font-bold">%</span>
+              </div>
+              <p>Скидки до <span class="text-white font-bold">15%</span> при закупке от 10 000 руб.</p>
+            </div>
+            
+            <div class="flex items-center justify-center lg:justify-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+              <p>Персональный менеджер <span class="text-white font-bold">24/7</span></p>
+            </div>
+            
+            <div class="flex items-center justify-center lg:justify-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              </div>
+              <p>Отсрочка платежа для постоянных клиентов</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Правая часть: Форма -->
+        <div class="w-full lg:w-[420px] shrink-0">
+          <form 
+            x-data="{ phone: '', submitted: false }"
+            @submit.prevent="submitted = true; setTimeout(() => { submitted = false; phone = ''; }, 3000)"
+            class="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 relative overflow-hidden"
+          >
+             <!-- Success Overlay -->
+             <div x-show="submitted" 
+                  x-transition:enter="transition ease-out duration-300"
+                  x-transition:enter-start="opacity-0 scale-90"
+                  x-transition:enter-end="opacity-100 scale-100"
+                  x-transition:leave="transition ease-in duration-200"
+                  x-transition:leave-start="opacity-100 scale-100"
+                  x-transition:leave-end="opacity-0 scale-90"
+                  class="absolute inset-0 bg-white flex flex-col items-center justify-center z-20"
+                  x-cloak>
+                 <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6 animate-bounce">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                 </div>
+                 <p class="font-bold text-xl text-slate-900 mb-2">Заявка принята!</p>
+                 <p class="text-gray-500 text-center px-6">Менеджер перезвонит вам в течение 15 минут.</p>
+                 <button type="button" @click="submitted = false" class="mt-6 text-sm text-gray-400 hover:text-slate-900 underline">Вернуться</button>
+             </div>
+
+            <div class="text-center mb-8">
+                <h3 class="text-xl font-bold text-slate-900 uppercase mb-2">
+                  Получить оптовый прайс
+                </h3>
+                <p class="text-sm text-gray-500">
+                    Оставьте номер, мы пришлем КП в WhatsApp
+                </p>
+            </div>
+
+            <div class="space-y-4">
+              <div>
+                  <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Ваш телефон</label>
+                  <input 
+                    type="tel" 
+                    placeholder="+7 (999) 000-00-00" 
+                    required
+                    x-model="phone"
+                    class="w-full px-5 py-4 border border-gray-200 rounded-xl focus:border-brand-accent focus:ring-4 focus:ring-brand-accent/10 outline-none bg-gray-50 text-slate-900 font-bold text-lg placeholder-gray-400 transition-all"
+                  />
+              </div>
+              
+              <button 
+                type="submit"
+                class="w-full bg-brand-accent hover:bg-brand-accentHover text-white font-bold py-4 px-6 rounded-xl uppercase tracking-wide flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-orange-500/30 hover:-translate-y-1 active:scale-95"
+              >
+                <span>Получить предложение</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+              
+              <p class="text-[10px] text-center text-gray-400 leading-tight pt-2 px-4">
+                Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных.
+              </p>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+</section>

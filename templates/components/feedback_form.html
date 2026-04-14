@@ -1,0 +1,58 @@
+<div class="bg-white border border-gray-100 shadow-2xl rounded-2xl p-6 md:p-8 sticky top-24 relative overflow-hidden"
+    id="feedback-form-container">
+    <h2 class="text-2xl font-bold text-slate-900 uppercase mb-4">
+        Написать директору
+    </h2>
+    <p class="text-gray-500 mb-6 text-sm leading-relaxed">
+        Есть вопрос по сотрудничеству или жалоба? Напишите нам напрямую.
+    </p>
+
+    <form hx-post="/api/feedback" hx-target="#feedback-form-container" hx-swap="outerHTML" class="space-y-4">
+
+        <div>
+            <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1.5">Ваше имя</label>
+            <input type="text" name="name"
+                class="w-full border border-gray-200 rounded-xl p-3 focus:outline-none focus:border-brand-accent focus:ring-4 focus:ring-brand-accent/10 transition-all bg-gray-50 font-medium"
+                placeholder="Иван Иванов" required />
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1.5">Телефон</label>
+            <input type="tel" name="phone"
+                class="w-full border border-gray-200 rounded-xl p-3 focus:outline-none focus:border-brand-accent focus:ring-4 focus:ring-brand-accent/10 transition-all bg-gray-50 font-medium"
+                placeholder="+7 (999) 000-00-00" required />
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-1.5">Сообщение</label>
+            <textarea rows="4" name="message"
+                class="w-full border border-gray-200 rounded-xl p-3 focus:outline-none focus:border-brand-accent focus:ring-4 focus:ring-brand-accent/10 transition-all bg-gray-50 font-medium resize-none"
+                placeholder="Текст вашего сообщения..." required></textarea>
+        </div>
+
+        <!-- ЧЕКБОКС СОГЛАСИЯ -->
+        <div class="flex items-start gap-3 mt-4">
+            <input type="checkbox" id="privacy_agree" x-model="agreed"
+                class="mt-1 w-4 h-4 text-brand-accent border-gray-300 rounded focus:ring-brand-accent cursor-pointer"
+                required>
+            <label for="privacy_agree" class="text-[11px] text-gray-500 leading-tight cursor-pointer select-none">
+                Я даю 
+                <a href="/privacy-consent" class="text-brand-accentDark underline" target="_blank">согласие на обработку персональных
+                    данных</a>
+                и согласен с
+                <a href="/privacy" class="text-brand-accentDark underline" target="_blank">политикой
+                    конфиденциальности</a>.
+            </label>
+        </div>
+
+        <button type="submit" :disabled="!agreed" :class="!agreed ? 'opacity-50 cursor-not-allowed grayscale' : ''"
+            class="w-full bg-brand-accent hover:bg-brand-accentHover text-slate-900 font-black py-4 rounded-xl uppercase tracking-wide flex items-center justify-center gap-3 transition-all shadow-lg active:scale-95">
+            <span
+                class="htmx-indicator animate-spin w-5 h-5 border-2 border-slate-900 border-t-transparent rounded-full"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" x2="11" y1="2" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+            Отправить сообщение
+        </button>
+    </form>
+</div>

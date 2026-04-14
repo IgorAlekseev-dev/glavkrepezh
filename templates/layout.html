@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+{# Здесь base.html подтянется из библиотеки starlette_admin автоматически #}
+
+{% block head_css %}
+    <!-- 1. Подключаем локальный Tabler -->
+    <link rel="stylesheet" href="/static/admin/css/tabler.min.css">
+    
+    <!-- 2. FontAwesome оставляем с CDN или тоже скачай (он обычно быстрый, но можно и локально) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        /* 3. Убиваем Inter и ставим системные шрифты */
+        :root {
+            --tblr-font-sans-serif: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+        }
+        body {
+            font-family: var(--tblr-font-sans-serif);
+        }
+    </style>
+{% endblock %}
+
+{% block head_js %}
+    <!-- 4. Локальный jQuery и Tabler JS -->
+    <script src="/static/admin/js/jquery.min.js"></script>
+    <script src="/static/admin/js/tabler.min.js"></script>
+{% endblock %}
+
+{# Эти блоки оставляем пустыми или не трогаем, чтобы не перегружать страницу лишним #}

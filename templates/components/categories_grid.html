@@ -1,0 +1,298 @@
+<!-- Изменено: pt-8 pb-2 (мобильные) и md:pt-16 md:pb-6 (десктоп) -->
+<section id="catalog" class="pt-8 pb-0 md:pt-0 md:pb-0 bg-gray-50 border-t border-gray-100">
+    <div class="container mx-auto px-4">
+
+        <!-- Заголовок + Кнопка "Все" -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
+            <div class="max-w-2xl">
+                <h2 class="text-2xl md:text-4xl font-bold text-slate-900 uppercase tracking-tight mb-2">
+                    Популярные категории
+                </h2>
+                <p class="text-gray-600 text-sm md:text-lg">
+                    Мы отобрали самые востребованные позиции. Всего более 30 разделов.
+                </p>
+            </div>
+            <a href="/catalog"
+                class="hidden md:inline-flex items-center gap-2 font-bold text-orange-700 hover:text-brand-accentHover transition-colors uppercase text-sm tracking-wider group">
+                Весь каталог
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6">
+            <a href="/catalog/ankera"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/ankera.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Анкера
+                </span>
+            </a>
+            <a href="/catalog/bolty"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/bolty.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Болты
+                </span>
+            </a>
+            <a href="/catalog/samorezy"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/samorezy.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Саморезы
+                </span>
+            </a>
+            <a href="/catalog/gaiki-i-shaiby"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/gaiki-i-shaiby.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Гайки и шайбы
+                </span>
+            </a>
+            <a href="/catalog/sverla"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/sverla.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Свёрла
+                </span>
+            </a>
+            <a href="/catalog/germetik-klei-pena"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/germetik-klei-pena.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Пена / клей
+                </span>
+            </a>
+            <a href="/catalog/diubeli"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/diubeli.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Дюбели
+                </span>
+            </a>
+            <a href="/catalog/instrument"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/instrument.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Инструмент
+                </span>
+            </a>
+            <a href="/catalog/bity-nasadki-derzhateli"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/bity-nasadki-derzhateli.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Биты, насадки, держатели
+                </span>
+            </a>
+            <a href="/catalog/trosy-i-soedeniteli"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/trosy-i-soedeniteli.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <span
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    Тросы и соединители
+                </span>
+            </a>
+        </div>
+        <!-- Кнопка для мобильных -->
+        <!-- Изменено: mt-4 (было 8) для уменьшения общего отступа снизу -->
+        <div class="mt-4 text-center md:hidden">
+            <a href="/catalog"
+                class="block w-full py-3.5 border-2 border-slate-900 text-slate-900 font-bold uppercase rounded-lg hover:bg-slate-900 hover:text-white transition-colors text-center text-sm">
+                Показать все категории
+            </a>
+        </div>
+    </div>
+</section>

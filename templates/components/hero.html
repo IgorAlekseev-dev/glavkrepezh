@@ -1,0 +1,173 @@
+<!-- Добавляем CSS для плавной анимации парения -->
+<style>
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .animate-float-slow {
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .animate-float-mid {
+        animation: float 6s ease-in-out infinite 0.5s;
+    }
+
+    /* Задержка 1с */
+    .animate-float-fast {
+        animation: float 5s ease-in-out infinite 1s;
+    }
+
+    /* Задержка 2с */
+</style>
+
+<section class="relative bg-slate-900 text-white overflow-hidden min-h-[500px] lg:min-h-[700px] flex items-center"
+    x-data="{ isDesktop: window.innerWidth >= 1000 }"
+    @resize.window.debounce.100ms="isDesktop = window.innerWidth >= 1000">
+
+    <!-- 1. ФОН: Фото магазина -->
+    <div class="absolute inset-0 z-0">
+        <!-- object-cover + object-center центрируют фото на мобильных -->
+        <img src="/static/images/glavkrepezh.avif" alt="Магазин ГлавКрепеж" rel="preload"
+            class="w-full h-full object-cover object-center" fetchpriority="high" decoding="async">
+        <!-- Плотный градиент, чтобы текст читался поверх фото -->
+        <div
+            class="absolute inset-0 bg-slate-900/40 lg:bg-slate-900/30 bg-gradient-to-r from-slate-900 via-slate-900/80 to-slate-900/60">
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10 py-10 md:py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <!-- ЛЕВАЯ КОЛОНКА: ТЕКСТ (Адаптивная, как просил) -->
+            <div class="max-w-3xl">
+
+                <div
+                    class="inline-flex items-center gap-2 bg-brand-accent/20 backdrop-blur-sm px-3 py-1.5 md:px-4 rounded-full border border-brand-accent/30 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-accent">Работаем
+                        08:00 – 19:00</span>
+                </div>
+
+                <h1
+                    class="text-3xl sm:text-5xl md:text-6xl font-bold leading-none mb-4 md:mb-6 uppercase tracking-tight shadow-black drop-shadow-lg">
+                    Крепеж и сопутствующие товары <br />
+                    <span class="text-brand-accent">в Иваново</span>
+                </h1>
+
+                <p class="text-base md:text-xl text-gray-300 mb-8 font-light max-w-xl leading-relaxed drop-shadow-md">
+                    Снабжение объектов под ключ. Анкера, болты, саморезы, расходники, гайки, такелаж и многое другое.
+                    <br>
+                    <span class="text-white font-bold">Опт и розница.</span>
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
+                    <a href="/catalog" aria-label="Перейти в полный каталог продукции"
+                        class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-brand-accent hover:bg-brand-accentHover text-slate-900 font-bold rounded-lg uppercase tracking-wider transition-all shadow-lg active:translate-y-0.5 text-sm md:text-base">
+                        Каталог
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </a>
+
+                    <a href="/download-price" download hx-boost="false"
+                        onclick="if(typeof ym !== 'undefined') ym(108419578, 'reachGoal', 'download_price');"
+                        class="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white hover:text-slate-900 text-white font-bold rounded-lg uppercase tracking-wider transition-all hover:shadow-lg active:translate-y-0.5 text-sm md:text-base">
+                        Скачать прайс
+                    </a>
+                </div>
+
+                <div
+                    class="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/10 grid grid-cols-3 gap-4 md:gap-8 items-start">
+
+                    <!-- 1. Позиции -->
+                    <div class="flex flex-col justify-center text-center">
+                        <div class="text-lg md:text-2xl font-bold text-white leading-tight">2000+</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 uppercase font-bold tracking-wider mt-1">
+                            Позиций
+                        </div>
+                    </div>
+
+                    <!-- 2. Расчёт -->
+                    <div class="flex flex-col text-center justify-center">
+                        <!-- text-base md:text-2xl: на мобилках чуть меньше, чтобы влезло "Безналичный" -->
+                        <div class="text-base md:text-2xl font-bold text-white leading-tight">Безналичный</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 uppercase font-bold tracking-wider mt-1">
+                            Расчёт
+                        </div>
+                    </div>
+
+                    <!-- 3. Доставка -->
+                    <div class="flex flex-col text-center justify-center">
+                        <div class="text-lg md:text-2xl font-bold text-white leading-tight">Доставка</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 uppercase font-bold tracking-wider mt-1">
+                            в день заказа
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА: ПАРАЛЛАКС (Скрыта на мобильных) -->
+            <div class="hidden lg:block relative h-[600px] w-full pointer-events-none select-none">
+                <template x-if="isDesktop">
+                    <div class="w-full h-full relative">
+
+                        <!-- СЛОЙ 1: Задний (Болты, размытые) -->
+                        <div class="absolute inset-0 flex items-center justify-center animate-float-slow z-0">
+                            <img src="/static/images/layer-1(1).avif" alt="Летающие болты" width="695" height="695"
+                                class="max-w-[100%] opacity-70 blur-[1px]" fetchpriority="high" decoding="async" />
+                        </div>
+
+                        <!-- СЛОЙ 2: ВИДЕО БОЛТА -->
+                        <div class="absolute inset-0 flex items-center justify-center animate-float-mid z-10">
+                            <!-- Свечение -->
+                            <div class="absolute w-[350px] h-[350px] bg-brand-accent/20 rounded-full blur-[80px]"></div>
+
+                            <video autoplay loop muted playsinline preload="auto"
+                                class="relative z-10 w-[450px] h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)]">
+                                <source src="/static/images/bolt.webm" type="video/webm">
+                                <img src="/static/images/layer-2(1).avif" alt="Крепеж">
+                            </video>
+                        </div>
+
+                        <!-- СЛОЙ 3: Передний (Крупные детали) -->
+                        <div class="absolute inset-0 flex items-center justify-center animate-float-fast z-20">
+                            <img src="/static/images/layer-3(1).avif" alt="Летающие саморезы и крепёж" width="600"
+                                height="600" class="max-w-[120%] h-auto" fetchpriority="high" decoding="async" />
+                        </div>
+
+                    </div>
+                </template>
+            </div>
+
+            <!-- СЛОЙ 2: Средний (Шуруповерт - главный герой) -->
+            <!-- Анимация: Средняя -->
+            <!-- <div class="absolute inset-0 flex items-center justify-center animate-float-mid z-10">
+                    <div class="absolute w-[400px] h-[400px] bg-brand-accent/20 rounded-full blur-[80px]"></div>
+
+                    <img src="/static/images/layer-2 (1).avif" alt="Шуруповерт" width="655" height="655"
+                        class="max-w-[110%] h-auto drop-shadow-2xl" fetchpriority="high" decoding="async" />
+                </div> -->
+
+            <!-- СЛОЙ 3: Передний (Крупные детали) -->
+            <!-- Анимация: Быстрая -->
+            <!-- <div class="absolute inset-0 flex items-center justify-center animate-float-fast z-20">
+                    <img src="/static/images/layer-3 (1).avif" alt="Летающие саморезы и крепёж" width="600" height="600"
+                        class="max-w-[120%] h-auto" fetchpriority="high" decoding="async" />
+                </div> -->
+        </div>
+
+    </div>
+    </div>
+</section>

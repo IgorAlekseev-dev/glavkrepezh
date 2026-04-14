@@ -1,0 +1,29 @@
+<div class="bg-white border border-gray-100 shadow-2xl rounded-2xl p-8 md:p-10 sticky top-24 text-center animate-fade-in"
+    id="feedback-form-container">
+    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12" />
+        </svg>
+    </div>
+    <h3 class="text-2xl font-bold text-slate-900 mb-2 uppercase">Сообщение отправлено!</h3>
+    <p class="text-gray-500 mb-8">Спасибо, мы свяжемся с вами в ближайшее время.</p>
+
+    <!-- Кнопка сброса -->
+    <button hx-get="/api/feedback/form" hx-target="#feedback-form-container" hx-swap="outerHTML"
+        class="text-brand-accent font-bold uppercase text-sm border-b-2 border-brand-accent/20 hover:border-brand-accent transition-all">
+        Отправить ещё одно сообщение
+    </button>
+
+    <script>
+        // Ждем небольшую паузу, чтобы убедиться, что метрика загружена
+        setTimeout(function () {
+            if (typeof ym !== 'undefined') {
+                // ВАЖНО: Замени 00000000 на реальный номер счетчика Яндекса!
+                ym(108419578, 'reachGoal', 'lead_form_success');
+                console.log("🎯 Цель 'lead_form_success' отправлена в Метрику");
+            }
+        }, 500);
+    </script>
+
+</div>

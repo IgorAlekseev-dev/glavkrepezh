@@ -1,0 +1,137 @@
+{% extends "index.html" %}
+
+{% block title %}О компании — ГлавКрепеж{% endblock %}
+
+{% block content %}
+<div class="bg-white font-['Exo_2']">
+
+    <!-- 1. ЭЛЕГАНТНЫЙ HERO-БЛОК -->
+    <section class="relative bg-slate-900 py-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="/static/images/warehouse.avif" 
+                alt="Магазин ГлавКрепеж" 
+                class="w-full h-full object-cover object-center opacity-40"
+            >
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl font-bold text-white uppercase tracking-tighter mb-6 leading-tight">
+                    Надёжный поставщик <br>
+                    <span class="text-brand-accent">метизной продукции</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 leading-relaxed border-l-4 border-brand-accent pl-6">
+                    Обеспечиваем клиентов качественными материалами по доступным ценам с оперативной доставкой.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. БЛОК: О КОМПАНИИ И ФОТО -->
+    <section class="py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mb-12">
+                <p class="text-xl md:text-2xl text-slate-800 leading-relaxed font-medium mb-12">
+                    <span class="text-orange-700 font-bold">Главкрепеж</span> — поставщик крепежа и метизной продукции для строительства, машиностроения, производства и других отраслей. Мы предлагаем широкий ассортимент изделий, включая болты, гайки, винты, шайбы, саморезы, анкеры, дюбели и другие крепёжные элементы.
+                </p>
+            </div>
+
+            <!-- ГАЛЕРЕЯ ФОТОГРАФИЙ (Новый блок) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+                <div class="h-64 rounded-xl overflow-hidden shadow-md">
+                    <img src="/static/images/warehouse.avif" alt="Витрины магазина" class="w-full h-full object-cover">
+                </div>
+                <div class="h-64 rounded-xl overflow-hidden shadow-md">
+                    <img src="/static/images/warehouse.avif" alt="Ассортимент" class="w-full h-full object-cover">
+                </div>
+                <div class="h-64 rounded-xl overflow-hidden shadow-md">
+                    <img src="/static/images/warehouse.avif" alt="Склад" class="w-full h-full object-cover">
+                </div>
+            </div>
+            
+            <!-- ГРАФИК РАБОТЫ (Компактная версия) -->
+            <div class="max-w-2xl mx-auto md:mx-0">
+                <div class="bg-slate-900 rounded-xl p-6 md:p-8 text-white flex flex-col sm:flex-row items-center gap-6 shadow-xl border-b-4 border-brand-accent">
+                    <div class="shrink-0">
+                        <div class="w-12 h-12 bg-brand-accent rounded-full flex items-center justify-center text-slate-900">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <h2 class="text-lg font-bold uppercase mb-1 tracking-tight">Единственные в городе с графиком <span class="whitespace-nowrap text-brand-accent">8:00&thinsp;–&thinsp;19:00</span></h2>
+                        <p class="text-gray-400 text-sm">
+                            Работаем <span class="text-white font-bold">без перерыва и выходных</span>. <br class="hidden sm:block"> 
+                            Мы всегда на связи, когда идет стройка.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. БЛОК: АССОРТИМЕНТ -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 uppercase mb-8 tracking-tight">Наш ассортимент</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Мы работаем с материалами разных классов прочности, включая высокопрочные решения для промышленных задач. В нашем каталоге представлены:
+                    </p>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+                        {% set items = [
+                            'Метрический крепёж (болты, гайки, винты, шайбы)',
+                            'Саморезы и шурупы для работы с деревом, металлом и другими материалами',
+                            'Анкерные системы и дюбели для крепления в бетоне, кирпиче и других основаниях',
+                            'Заклёпки, шплинты, скобы и другие вспомогательные элементы',
+                            'Такелаж и грузовой крепёж',
+                            'Продукция из нержавеющей стали и с антикоррозийным покрытием'
+                        ] %}
+                        {% for item in items %}
+                        <li class="flex items-start gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand-accent mt-1 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="text-slate-700 font-medium text-sm md:text-base">{{ item }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="hidden lg:block relative">
+                    <img src="/static/images/warehouse.avif" alt="Ассортимент Главкрепеж" class="rounded-2xl shadow-lg object-cover w-full h-80 border-4 border-white">
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include "components/brands.html" %}
+    <!-- 4. БЛОК: ПРЕИМУЩЕСТВА -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-slate-900 uppercase mb-12 text-center tracking-tight">Преимущества сотрудничества</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% set advantages = [
+                    {'t': 'Качество продукции', 'd': 'Весь ассортимент соответствует ГОСТ, DIN и другим стандартам. Контролируем качество на всех этапах.'},
+                    {'t': 'Широкий выбор', 'd': 'Изделия для строительства, машиностроения, мебельного производства и электромонтажа.'},
+                    {'t': 'Оперативность', 'd': 'Организуем доставку по Иванову в короткие сроки. Возможна отправка в другие регионы.'},
+                    {'t': 'Гибкие условия', 'd': 'Выгодные цены для оптовых и розничных клиентов, индивидуальные решения по запросу.'},
+                    {'t': 'Профессиональная поддержка', 'd': 'Поможем подобрать крепёж с учётом специфики задачи и проконсультируем.'},
+                    {'t': 'Опыт и надёжность', 'd': 'Большой опыт работы на рынке метизной продукции позволяет нам решать задачи любой сложности.'}
+                ] %}
+
+                {% for adv in advantages %}
+                <div class="bg-white border border-gray-100 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <h3 class="text-base font-bold text-slate-900 uppercase mb-3 border-b-2 border-brand-accent pb-1 inline-block">
+                        {{ adv.t }}
+                    </h3>
+                    <p class="text-gray-500 text-xs md:text-sm leading-relaxed mt-2">
+                        {{ adv.d }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

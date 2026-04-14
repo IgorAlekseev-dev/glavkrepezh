@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="yandex-verification" content="5a24b7b379d435f3" />
+  <meta name="google-site-verification" content="lL3mcRMYYmkXkFdVO1etTceaVwJ-WAYQDrmQ3fxEr1g" />
+
+  <title>{% block title %}ГлавКрепеж — Крепеж и инструмент в Иваново{% endblock %}</title>
+
+  <meta name="description"
+    content="{% block description %}Строительный крепеж, метизы, анкера, болты и расходные материалы в Иваново. Опт и розница. Доставка.{% endblock %}">
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://xn--80aebkagzf4bi.xn--p1ai{{ request.url.path }}" />
+  <meta property="og:title" content="{{ self.title() }}" />
+  <meta property="og:description" content="{{ self.description() }}" />
+  <meta property="og:site_name" content="ГлавКрепеж" />
+  {% block og_image %}
+  <meta property="og:image" content="https://xn--80aebkagzf4bi.xn--p1ai/static/images/og-image.jpg" />
+  <meta property="og:image:secure_url" content="https://xn--80aebkagzf4bi.xn--p1ai/static/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:alt" content="Магазин ГлавКрепеж — большой выбор крепежа в Иваново" />
+  {% endblock %}
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ self.title() }}" />
+  <meta name="twitter:description" content="{{ self.description() }}" />
+  <meta name="twitter:image" content="https://xn--80aebkagzf4bi.xn--p1ai/static/images/og-image.jpg" />
+
+  <link rel="canonical" href="https://xn--80aebkagzf4bi.xn--p1ai{{ request.url.path }}" />
+
+  <link rel="icon" type="image/png" href="/static/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="shortcut icon" href="/static/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Главкрепеж" />
+  <link rel="manifest" href="/static/favicon/site.webmanifest">
+
+  <link rel="preload" href="/static/fonts/exo2-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/static/css/fonts.css">
+
+  <!-- 2. Стек: HTMX + Alpine.js -->
+  <script src="https://unpkg.com/htmx.org@1.9.10" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+  <style>
+    [x-cloak] {
+      display: none !important;
+    }
+
+    /* Кастомный скроллбар для красоты */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Индикатор загрузки HTMX */
+    .htmx-indicator {
+      opacity: 0;
+      transition: opacity 200ms ease-in;
+    }
+
+    .htmx-request .htmx-indicator {
+      opacity: 1
+    }
+
+    .htmx-request.htmx-indicator {
+      opacity: 1
+    }
+  </style>
+
+  {% block head_extra %}{% endblock %}
+</head>
+
+<!-- Alpine x-data для глобального состояния (например, корзина или мобильное меню) -->
+
+<body class="flex flex-col min-h-screen bg-brand-light text-brand-dark" hx-boost="true"
+  x-data="{ mobileMenuOpen: false }">
+
+  <!-- Шапка -->
+  {% include 'components/header.html' %}
+
+  <!-- Контент -->
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Подвал -->
+  {% include 'components/footer.html' %}
+
+  <!-- Кнопка 'Наверх' (появляется при скролле) -->
+  <button x-data="{ show: false }" @scroll.window="show = (window.pageYOffset > 300)" x-show="show" x-transition
+    @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+    class="fixed bottom-8 right-8 bg-brand-accent hover:bg-brand-accentHover text-slate-900 p-3 rounded-full shadow-lg z-50">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+
+  {% include 'components/cookie_banner.html' %}
+
+  <script type="text/javascript">
+    // 1. Создаем функцию запуска метрики (Твой код от Яндекса, но внутри функции)
+    function initYandexMetrika() {
+      // Защита: если метрика уже запущена, не запускаем второй раз
+      if (window.ym) return;
+
+      (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=108419578', 'ym');
+
+      ym(108419578, 'init', {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        referrer: document.referrer,
+        url: location.href,
+        accurateTrackBounce: true,
+        trackLinks: true
+      });
+      console.log("✅ Яндекс Метрика активирована (Cookie приняты)");
+    }
+
+    // 2. Ждем сигнала от нашего Cookie-баннера
+    // Эта строка запустит Метрику ТОЛЬКО когда вызовется 'cookie-accepted'
+    window.addEventListener('cookie-accepted', initYandexMetrika);
+
+    // 3. Учим Метрику понимать HTMX
+    // Когда HTMX меняет страницу без перезагрузки, отправляем Яндексу новый "хит"
+    document.body.addEventListener('htmx:pushedIntoHistory', function (evt) {
+      if (typeof ym !== 'undefined') {
+        ym(108419578, 'hit', evt.detail.path);
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+{% extends "index.html" %}
+
+{% block title %}
+{% if current_category %}
+{{ current_category.name }} — Купить в Иваново | ГлавКрепеж
+{% else %}
+Каталог крепежа и метизов — ГлавКрепеж
+{% endif %}
+{% endblock %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement":[
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "https://главкрепеж.рф/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Каталог",
+      "item": "https://главкрепеж.рф/catalog"
+    }
+    {% if current_category %}
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ current_category.name }}",
+      "item": "https://главкрепеж.рф/catalog/{{ current_category.slug }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- ОТСТУПЫ: pt-4 (минимальный сверху), pb-16 (снизу) -->
+<div class="bg-gray-50 min-h-screen pb-16 pt-4"
+     x-data
+     x-init="
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('q') || urlParams.get('page') > 1) {
+            setTimeout(() => {
+                const target = document.getElementById('product-section');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 300);
+        }
+     ">
+     
+    <div class="container mx-auto px-4">
+
+        <!-- 1. Хлебные крошки (Навигация) -->
+        <div class="text-sm text-gray-500 mb-6 flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+            <a href="/" class="hover:text-brand-accent transition-colors flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                Главная
+            </a>
+            <span class="text-gray-300">/</span>
+
+            {% if current_category %}
+            <!-- Если мы внутри категории -> Ссылка на корень каталога -->
+            <a href="/catalog" class="hover:text-brand-accent transition-colors">Каталог</a>
+            <span class="text-gray-300">/</span>
+
+            {% if current_category.parent %}
+            <a href="/catalog/{{ current_category.parent.slug }}" class="hover:text-brand-accent transition-colors">{{
+                current_category.parent.name }}</a>
+            <span class="text-gray-300">/</span>
+            {% endif %}
+
+            <span class="text-slate-900 font-bold truncate">{{ current_category.name }}</span>
+            {% else %}
+            <!-- Если мы в корне -> Просто текст -->
+            <span class="text-slate-900 font-bold">Каталог</span>
+            {% endif %}
+        </div>
+
+        <!-- 2. Заголовок страницы -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+            <div>
+                <h1 class="text-2xl md:text-4xl font-bold text-slate-900 uppercase tracking-tight leading-none">
+                    {% if current_category %}
+                    {{ current_category.name }}
+                    {% else %}
+                    Каталог продукции
+                    {% endif %}
+                </h1>
+
+                {% if current_category and current_category.parent %}
+                <p class="text-gray-500 mt-2 text-sm">
+                    ← <a href="/catalog/{{ current_category.parent.slug }}" class="hover:text-brand-accent">Вернуться в
+                        раздел "{{ current_category.parent.name }}"</a>
+                </p>
+                {% elif current_category %}
+                <p class="text-gray-500 mt-2 text-sm">
+                    ← <a href="/catalog" class="hover:text-brand-accent">Вернуться ко всем категориям</a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 3. КАТЕГОРИИ (Умное отображение) -->
+        {% if categories %}
+        {% if not current_category and not search_query %}
+        <!-- ВАРИАНТ А: МЫ В КОРНЕ -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6 mb-12">
+            {% for cat in categories %}
+            <a href="/catalog/{{ cat.slug }}"
+                class="group flex flex-col items-center bg-white rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-200 hover:border-brand-accent/30 text-center h-full relative overflow-hidden">
+
+                <div class="w-full aspect-[4/3] mb-3 flex items-center justify-center rounded-lg group-hover: transition-colors overflow-hidden relative"
+                    x-data="{ imgError: false }">
+
+                    <img src="/static/images/categories/{{ cat.slug }}.avif" alt="" loading="lazy"
+                        class="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500 relative z-10"
+                        x-show="!imgError" @error="imgError = true">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-10 h-10 text-slate-300 group-hover:text-brand-accent transition-colors absolute inset-0 m-auto"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" x-show="imgError" x-cloak>
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                </div>
+
+                <h2
+                    class="text-xs md:text-sm font-bold text-slate-900 group-hover:text-brand-accent transition-colors uppercase leading-tight line-clamp-2">
+                    {{ cat.name }}
+                </h2>
+            </a>
+            {% endfor %}
+        </div>
+
+        {% else %}
+        <!-- ВАРИАНТ Б: МЫ ВНУТРИ РАЗДЕЛА (Показываем компактные кнопки) -->
+        <div class="mb-12">
+            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Подкатегории:</h3>
+            <div class="flex flex-wrap gap-2 md:gap-3">
+                {% for cat in categories %}
+                <a href="/catalog/{{ cat.slug }}"
+                    class="inline-flex items-center px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm text-sm font-bold text-slate-700 hover:text-brand-accent hover:border-brand-accent hover:shadow-md transition-all duration-200 active:scale-95">
+                    {{ cat.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% else %}
+            <!-- Если категорий нет, но это НЕ поиск (просто пустая папка) -->
+            {% if not search_query and not products %}
+               <p class="text-gray-500 mb-8">В этом разделе пока нет подкатегорий.</p>
+            {% endif %}
+        {% endif %}
+
+        <!-- 4. ТАБЛИЦА ТОВАРОВ (HTMX) -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden scroll-mt-24"
+            id="product-section">
+
+            <!-- Шапка таблицы с поиском -->
+            <div class="p-5 md:p-6 border-b border-gray-100 bg-white">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 uppercase flex items-center gap-2">
+                            {% if current_category %}
+                            Товары
+                            {% else %}
+                            Все товары
+                            {% endif %}
+                            <span class="text-xs bg-gray-100 text-slate-700 px-2 py-1 rounded-full font-normal">
+                                {{ products|length }}{% if products|length >= 50 %}+{% endif %}
+                            </span>
+                        </h2>
+                    </div>
+
+                    <!-- Поиск (HTMX Trigger) -->
+                    <div class="relative w-full md:w-80">
+                        <input type="text" id="search_input" name="q" value="{{ search_query or '' }}"
+                            placeholder="Поиск по наименованию..."
+                            class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-accent focus:border-transparent outline-none transition-all text-sm"
+                            hx-get="" hx-trigger="keyup changed delay:500ms, search" hx-target="#product-results"
+                            hx-indicator="#search-loading" hx-headers='{"HX-Trigger": "search_input"}'>
+
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.3-4.3" />
+                        </svg>
+
+                        <div id="search-loading" class="htmx-indicator absolute right-3 top-1/2 -translate-y-1/2">
+                            <svg class="animate-spin h-4 w-4 text-brand-accent" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сама таблица -->
+            <div class="overflow-x-hidden rounded-b-2xl">
+                <table class="w-full text-left border-collapse">
+                    <!-- Шапка скрыта на мобильном, видна на ПК -->
+                    <thead
+                        class="hidden md:table-header-group bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-200">
+                        <tr>
+                            <th class="py-4 pl-6 pr-4 font-bold w-auto">Наименование</th>
+                            <th class="order-3 md:order-none md:w-[140px] py-3 md:py-4 pl-4 pr-6 md:pr-10 text-right align-middle whitespace-nowrap flex items-center md:table-cell">Цена</th>
+                            <!-- <th class="py-4 px-4 pr-6 font-bold w-[140px] text-center">Статус</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="product-results" class="divide-y divide-gray-100 text-sm">
+                        {% include "components/product_rows.html" %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

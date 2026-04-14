@@ -1,0 +1,85 @@
+{# Переменная для отслеживания смены категории #}
+{% set last_cat = namespace(name=prev_cat if prev_cat else None) %}
+
+{% for product in products %}
+    
+    {# --- 1. РАЗДЕЛИТЕЛЬ КАТЕГОРИЙ --- #}
+    {# Показываем разделитель, если категория изменилась #}
+    {% if product.category.name != last_cat.name %}
+        <tr class="flex w-full md:table-row bg-gray-50 border-y border-gray-200">
+            <td colspan="3" class="w-full py-2 px-3 md:py-2 md:px-6 block md:table-cell">
+                <div class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 md:w-4 md:h-4 text-brand-accent shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                    <span class="font-bold text-slate-600 uppercase tracking-wider text-[10px] md:text-xs truncate">
+                        {{ product.category.name }}
+                    </span>
+                </div>
+            </td>
+        </tr>
+        {% set last_cat.name = product.category.name %}
+    {% endif %}
+
+    {# --- 2. СТРОКА ТОВАРА --- #}
+    <tr class="group grid grid-cols-2 md:table-row gap-x-4 gap-y-1 p-3 border-b border-gray-100 hover:bg-brand-light/30 transition-colors relative"
+        {# ВАЖНО: ИСПОЛЬЗУЕМ ОТНОСИТЕЛЬНЫЙ URL (просто знак вопроса) #}
+        {% if loop.last and products|length == 50 %}
+            hx-get="?page={{ page + 1 }}{% if q %}&q={{ q }}{% endif %}&prev_cat={{ product.category.name }}"
+            hx-trigger="revealed"
+            hx-swap="afterend"
+        {% endif %}
+    >
+        <td class="col-span-2 order-1 md:order-none md:w-auto md:py-4 md:pl-6 md:pr-4 align-middle block md:table-cell">
+            <div class="flex flex-col">
+                <span class="text-slate-800 font-medium text-sm md:text-base leading-snug group-hover:text-brand-primary transition-colors">
+                    {{ product.name }}
+                </span>
+            </div>
+        </td>
+        <td class="order-3 md:order-none md:w-[140px] py-3 md:py-4 pl-4 pr-6 md:pr-10 text-right align-middle whitespace-nowrap flex items-center md:table-cell">
+            <div class="flex flex-col items-end">
+                {% if product.price and product.price > 0 %}
+                    <span class="font-bold text-slate-900 text-base md:text-lg">
+                        {{ "{:,.2f}".format(product.price)|replace(',', ' ') }} <span class="text-gray-400 text-xs font-normal ml-0.5">₽</span>
+                    </span>
+                {% else %}
+                    <span class="text-slate-600 text-[10px] md:text-xs font-medium italic bg-gray-100 px-2 py-1 rounded border border-gray-200">
+                        Запрос
+                    </span>
+                {% endif %}
+            </div>
+        </td>
+
+        <!-- 3. СТАТУС -->
+        <!-- <td class="order-2 md:order-none md:w-[140px] md:py-4 md:px-4 md:pr-6 text-left md:text-center align-middle whitespace-nowrap flex items-center md:justify-center md:table-cell">
+            <div class="md:hidden flex items-center">
+                 <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-green-700 border border-green-100">
+                    <span class="w-1 h-1 rounded-full bg-green-500"></span>
+                    В наличии
+                </span>
+            </div>
+            <div class="hidden md:block">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-green-50 text-green-700 border border-green-100">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    В наличии
+                </span>
+            </div>
+        </td> -->
+    </tr>
+
+{% else %}
+    {% if page == 1 %}
+    <tr>
+        <td colspan="3" class="p-8 md:p-12 text-center block md:table-cell">
+            <div class="flex flex-col items-center justify-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-slate-300 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <div class="text-center">
+                    <p class="text-slate-600 font-medium opacity-80">Ничего не найдено</p>
+                    <p class="text-slate-400 text-sm opacity-80">В этом разделе товаров нет или мы не нашли по вашему запросу</p>
+                    <a href="/download-price" download hx-boost="false" class="text-brand-accent underline mt-2 inline-block">Скачать полный прайс
+                    (Excel)</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+    {% endif %}
+{% endfor %}

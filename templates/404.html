@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+{% block title %}Страница не найдена (404) — ГлавКрепеж{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50 flex items-center justify-center min-h-[60vh] py-16 md:py-24 font-['Exo_2']">
+    <div class="container mx-auto px-4 text-center">
+        
+        <!-- Гигантская цифра 404 на заднем плане -->
+        <div class="relative inline-block mb-6">
+            <h1 class="text-[8rem] md:text-[12rem] font-black text-gray-200 tracking-tighter leading-none select-none">
+                404
+            </h1>
+            <!-- Декоративная иконка (сломанный болт/предупреждение), наложенная поверх -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-20 h-20 md:w-32 md:h-32 bg-white rounded-full shadow-2xl flex items-center justify-center text-brand-accent transform rotate-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 md:w-16 md:h-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-2xl md:text-4xl font-bold text-slate-900 uppercase mb-4 tracking-tight">
+            Ой! Страница не найдена
+        </h2>
+        
+        <p class="text-gray-500 max-w-md mx-auto mb-10 text-sm md:text-base leading-relaxed">
+            Похоже, мы не можем найти то, что вы ищете. Возможно, страница была удалена, переименована или вы ввели неверный адрес.
+        </p>
+
+        <!-- Кнопки действий -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/" 
+               class="w-full sm:w-auto bg-brand-accent hover:bg-brand-accentHover text-slate-900 font-bold px-8 py-3.5 rounded-xl uppercase tracking-widest transition-all shadow-lg active:scale-95">
+                На главную
+            </a>
+            
+            <a href="/catalog" 
+               class="w-full sm:w-auto bg-white border border-gray-200 hover:border-brand-accent text-slate-700 hover:text-brand-accent font-bold px-8 py-3.5 rounded-xl uppercase tracking-widest transition-all active:scale-95 shadow-sm">
+                Перейти в каталог
+            </a>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

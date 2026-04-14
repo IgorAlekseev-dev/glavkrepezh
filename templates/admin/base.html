@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    {% if favicon_url %}
+        <link rel="icon" type="image/x-icon" href="{{ favicon_url }}"/>
+    {% endif %}
+    {% block head_meta %}{% endblock %}
+    {% block title %}<title>{{ title or app_title }}</title>{% endblock %}
+
+    <!-- ПОДКЛЮЧАЕМ ЛОКАЛЬНЫЕ ФАЙЛЫ ИЗ ТВОЕЙ ПАПКИ /static -->
+    <link rel="stylesheet" href="/static/admin/css/tabler.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Используем внутренний путь библиотеки для FontAwesome (он уже настроен в .venv) -->
+    <link rel="stylesheet" href="{{ url_for('admin:statics', path='css/fontawesome.min.css') }}">
+    <style>
+        /* УБРАЛИ @import url('https://rsms.me/inter/inter.css'); */
+
+        :root {
+            --tblr-font-sans-serif: system-ui, -apple-system, sans-serif !important;
+        }
+
+        body { font-family: var(--tblr-font-sans-serif) !important; }
+
+        .fa { font-family: FontAwesome !important; }
+
+        .navbar-logo {
+            width: auto;
+            height: 2rem;
+        }
+    </style>
+    {% block head_css %}{% endblock %}
+</head>
+
+<body>
+{% block body %}{% endblock %}
+{% block modal %}{% endblock %}
+
+<!-- ПОДКЛЮЧАЕМ ЛОКАЛЬНЫЕ СКРИПТЫ -->
+<script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+<script type="text/javascript" src="/static/admin/js/tabler.min.js"></script>
+
+{% block script %}{% endblock %}
+
+<script>
+    $(function () {
+        $(".language-switcher-item").each(function () {
+            let el = $(this);
+            el.on("click", function () {
+                Cookies.set(String(el.data("cookie-name")), String(el.data("lang")));
+                window.location.reload();
+            });
+        });
+
+        $(".timezone-switcher-item").each(function () {
+            let el = $(this);
+            el.on("click", function () {
+                Cookies.set(String(el.data("cookie-name")), String(el.data("tz")));
+                window.location.reload();
+            });
+        });
+
+        {% if timezone_config and timezone_config.use_user_locale_timezone %}
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        if (!Cookies.get('timezone') && timezone) {
+            Cookies.set('timezone', timezone);
+        }
+        {% endif %}
+    });
+</script>
+</body>
+</html>

@@ -1,12 +1,31 @@
-# High-Performance B2B E-commerce Platform
+<div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql)
-![HTMX](https://img.shields.io/badge/HTMX-336699?style=for-the-badge)
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker)
+  <h1>High-Performance B2B E-commerce Platform</h1>
+
+  <p align="center">
+    <img src="https://img.shields.io/badge/Python_3.12-14354C?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+    <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+    <img src="https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL">
+    <img src="https://img.shields.io/badge/SQLAlchemy-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white" alt="SQLAlchemy">
+    <img src="https://img.shields.io/badge/HTMX-3D5A80?style=for-the-badge&logoColor=white" alt="HTMX">
+    <img src="https://img.shields.io/badge/Alpine.js-2D3441?style=for-the-badge&logo=alpinedotjs&logoColor=white" alt="Alpine.js">
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+  </p>
+
+  <img src="./assets/main_screen.png" alt="Главный экран B2B платформы ГлавКрепеж" width="90%">
+
+  <br>
+  <br>
+
+  <i>Архитектурное демо коммерческого проекта B2B-витрины (5000+ SKU)</i>
+  <br><br>
+
+</div>
 
 > **Disclaimer:** Это архитектурное демо реального коммерческого проекта. Чувствительные бизнес-данные, ключи и проприетарная информация анонимизированы.
+
+## Описание проекта
+<!-- Далее идет текст из предыдущего варианта -->
 
 ## Описание проекта
 Спроектирована и разработана автоматизированная B2B-витрина для оптово-розничного поставщика (5000+ SKU). Проект решает проблему медленного обновления каталогов и неэффективного поиска товаров со сложной номенклатурой. 
